@@ -10,16 +10,18 @@ Waypost documentation [here]
 Waypost case sudy [here]
 
 ## Docker Quick Start
-Clone the Waypost github repo:
+### Clone the Waypost github repo:
 
-```git clone https://github.com/waypost-io/waypost-deployment.git```
+```
+git clone https://github.com/waypost-io/waypost-deployment.git
+cd waypost-deployment
+```
 
-Change directories to the Waypost Directory
+###Run the follwing command:
 
-```cd waypost-deployment```
+```
+docker-compose up --build
+```
 
-Run the follwing command:
-
-`docker-compose up --build`
-
+###View the Waypost Application
 Visit `http://localhost:3000` to get started.
