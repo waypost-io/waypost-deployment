@@ -17,11 +17,11 @@ git clone https://github.com/waypost-io/waypost-deployment.git
 cd waypost-deployment
 ```
 
-###Run the follwing command:
+### Run the follwing command:
 
 ```
 docker-compose up --build
 ```
 
-###View the Waypost Application
+### View the Waypost Application
 Visit `http://localhost:3000` to get started.
