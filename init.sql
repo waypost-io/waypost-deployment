@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS flags (
     description VARCHAR(255) DEFAULT 'No description',
     status boolean NOT NULL DEFAULT FALSE,
     percentage_split SMALLINT NOT NULL CHECK (percentage_split >= 0 AND percentage_split <= 100) DEFAULT 100,
+    hash_offset INT NOT NULL DEFAULT 0,
     is_experiment boolean NOT NULL DEFAULT FALSE,
     is_deleted boolean NOT NULL DEFAULT FALSE,
     date_created timestamp with time zone NOT NULL DEFAULT current_timestamp
@@ -33,7 +34,6 @@ CREATE TABLE IF NOT EXISTS experiments (
     date_started DATE NOT NULL DEFAULT CURRENT_DATE,
     date_ended DATE,
     duration INT NOT NULL DEFAULT 90,
-    hash_offset INT NOT NULL DEFAULT 0,
     name VARCHAR(50),
     description VARCHAR(255)
 );
@@ -50,16 +50,21 @@ CREATE TABLE IF NOT EXISTS metrics (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) NOT NULL UNIQUE,
   query_string TEXT NOT NULL,
-  type VARCHAR(10) NOT NULL
+  type VARCHAR(10) NOT NULL,
+  is_deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS experiment_metrics (
- experiment_id INTEGER REFERENCES experiments (id) NOT NULL,
- metric_id INTEGER REFERENCES metrics (id) NOT NULL,
- mean_test float,
- mean_control float,
- standard_dev_test float,
- standard_dev_control float,
- p_value float,
- PRIMARY KEY (experiment_id, metric_id)
+  experiment_id INTEGER REFERENCES experiments (id) NOT NULL,
+  metric_id INTEGER REFERENCES metrics (id) NOT NULL,
+  mean_test float,
+  mean_control float,
+  interval_start float,
+  interval_end float,
+  p_value float,
+  PRIMARY KEY (experiment_id, metric_id)
+);
+
+CREATE TABLE keys (
+    sdk_key VARCHAR(37) PRIMARY KEY UNIQUE
 );
