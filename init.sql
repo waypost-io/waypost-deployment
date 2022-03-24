@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS flags (
     id SERIAL PRIMARY KEY,
     app_id integer,
-    name VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
     description VARCHAR(255) DEFAULT 'No description',
     status boolean NOT NULL DEFAULT FALSE,
     percentage_split SMALLINT NOT NULL CHECK (percentage_split >= 0 AND percentage_split <= 100) DEFAULT 100,
