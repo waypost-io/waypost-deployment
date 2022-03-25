@@ -10,6 +10,9 @@ CREATE TABLE IF NOT EXISTS flags (
     date_created TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO experiments (name, is_experiment)
+VALUES ('New Marketing Feature', TRUE);
+
 CREATE TABLE IF NOT EXISTS custom_assignments (
  id SERIAL PRIMARY KEY,
  user_id TEXT NOT NULL,
