@@ -71,6 +71,10 @@ CREATE TABLE IF NOT EXISTS metrics (
   is_deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
+INSERT INTO metrics (name, query_string, type)
+VALUES ('time on site', 'SELECT * FROM time_on_site', 'duration'), 
+       ('sign ups', 'SELECT * FROM signups', 'binomial');
+
 CREATE TABLE IF NOT EXISTS experiment_metrics (
  experiment_id INTEGER REFERENCES experiments (id) NOT NULL,
  metric_id INTEGER REFERENCES metrics (id) NOT NULL,
@@ -81,3 +85,6 @@ CREATE TABLE IF NOT EXISTS experiment_metrics (
  p_value FLOAT,
  PRIMARY KEY (experiment_id, metric_id)
 );
+
+INSERT INTO experiment_metrics (experiment_id, metric_id)
+VALUES (1, 1), (1, 2);
