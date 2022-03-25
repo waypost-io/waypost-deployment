@@ -49,6 +49,9 @@ CREATE TABLE IF NOT EXISTS experiments (
     description VARCHAR(255)
 );
 
+INSERT INTO experiments (id, flag_id, date_started)
+VALUES (1, 1, '2022-03-14');
+
 CREATE TABLE IF NOT EXISTS exposures (
   id SERIAL PRIMARY KEY,
   experiment_id INTEGER REFERENCES experiments (id) NOT NULL,
